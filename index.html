@@ -248,7 +248,7 @@
       color: var(--navy);
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: .02em;
+      letter-spacing: 0;
       line-height: 1.6;
     }
 
@@ -1952,19 +1952,20 @@
 
     .profile-text p:last-child { margin-bottom: 0; }
 
-    .profile-mission-quote {
+    .profile-text .profile-mission-quote {
       margin: 32px 0 14px;
       padding: 28px 32px;
       border-left: 3px solid var(--amber);
       background: rgba(255, 255, 255, .06);
       border-radius: 0 8px 8px 0;
-      font-size: 38px;
+      color: var(--white);
+      font-size: 34px;
       font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: .02em;
+      line-height: 1.28;
+      letter-spacing: 0;
     }
 
-    .profile-mission-note {
+    .profile-text .profile-mission-note {
       margin: 0;
       font-size: 15px;
       line-height: 1.7;
@@ -2826,6 +2827,14 @@
       }
 
       .hero-signal-badge { justify-self: start; }
+
+      .profile-text .profile-mission-quote {
+        margin: 28px 0 14px;
+        padding: 18px 10px 18px 14px;
+        font-size: 16px;
+        line-height: 1.35;
+        white-space: nowrap;
+      }
 
       .hero-actions .button,
       .final-actions .button {
