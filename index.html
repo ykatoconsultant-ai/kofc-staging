@@ -2730,7 +2730,7 @@
       .case-key-metric { font-size: 28px; }
       .case-key-metric-unit { font-size: 15px; }
       .case-key-metric-suffix { font-size: 11.5px; }
-      .case-key-note { font-size: 10px; max-width: 150px; margin-top: 4px; }
+      .case-key-note { display: none; }
       .case-key-strip { padding: 8px 12px; gap: 6px; }
       .case-key-step-label { font-size: 8.5px; }
       .case-key-step-text { font-size: 10px; }
@@ -2740,18 +2740,16 @@
       .industry-prev { left: -6px; }
       .industry-next { right: -6px; }
 
-      /* スマホ時: 業種別画像5枚に焼き付いた生成AI由来の擬似文字（タブレット画面・書類のチャート等）を抑えるため、画像に軽いblur+暗化、その上に全面ベール+右側グラデの二重ベールを重ねる */
+      /* スマホ時: PC版に近い明るさを維持し、文字の重なりだけ解消する */
       .case-key-visual img {
-        filter: blur(0.6px) brightness(0.88);
+        filter: none;
       }
       .case-key-visual::after {
-        background:
-          linear-gradient(rgba(0, 40, 80, .22), rgba(0, 40, 80, .22)),
-          linear-gradient(to right,
-            rgba(0, 40, 80, .35) 0%,
-            rgba(0, 40, 80, .25) 30%,
-            rgba(0, 40, 80, .45) 65%,
-            rgba(0, 40, 80, .65) 100%);
+        background: linear-gradient(to right,
+          transparent 0%,
+          transparent 32%,
+          rgba(0, 40, 80, .35) 62%,
+          rgba(0, 40, 80, .58) 100%);
       }
 
       /* スマホ時: §advisor ベネフィットパネルを横スクロールカード化（縦スペース節約・スワイプUX向上） */
