@@ -2740,13 +2740,18 @@
       .industry-prev { left: -6px; }
       .industry-next { right: -6px; }
 
-      /* スマホ時: 業種別画像5枚に焼き付いた生成AI由来の擬似文字（タブレット画面・書類のチャート等）を抑えるため、左側にも濃紺ベールを追加 */
+      /* スマホ時: 業種別画像5枚に焼き付いた生成AI由来の擬似文字（タブレット画面・書類のチャート等）を抑えるため、画像に軽いblur+暗化、その上に全面ベール+右側グラデの二重ベールを重ねる */
+      .case-key-visual img {
+        filter: blur(0.6px) brightness(0.88);
+      }
       .case-key-visual::after {
-        background: linear-gradient(to right,
-          rgba(0, 40, 80, .35) 0%,
-          rgba(0, 40, 80, .25) 30%,
-          rgba(0, 40, 80, .45) 65%,
-          rgba(0, 40, 80, .65) 100%);
+        background:
+          linear-gradient(rgba(0, 40, 80, .22), rgba(0, 40, 80, .22)),
+          linear-gradient(to right,
+            rgba(0, 40, 80, .35) 0%,
+            rgba(0, 40, 80, .25) 30%,
+            rgba(0, 40, 80, .45) 65%,
+            rgba(0, 40, 80, .65) 100%);
       }
 
       /* スマホ時: §advisor ベネフィットパネルを横スクロールカード化（縦スペース節約・スワイプUX向上） */
@@ -2772,14 +2777,27 @@
         display: none;
       }
       .advisor-benefit-list li {
-        flex: 0 0 80%;
-        background: #f6f8fb;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 14px 14px;
+        flex: 0 0 85%;
+        display: block;
+        position: relative;
+        background: var(--soft-teal);
+        border: 1px solid #d6e8e6;
+        border-radius: 10px;
+        padding: 18px 18px 18px 36px;
         scroll-snap-align: start;
-        font-size: 14px;
-        line-height: 1.65;
+        font-size: 15.5px;
+        line-height: 1.75;
+      }
+      .advisor-benefit-list li::before {
+        position: absolute;
+        left: 16px;
+        top: 18px;
+        margin-top: 0;
+        font-size: 17px;
+      }
+      .advisor-benefit-list strong {
+        font-size: 16.5px;
+        color: var(--teal-dark);
       }
 
       .voice-card {
