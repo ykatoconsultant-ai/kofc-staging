@@ -2740,18 +2740,57 @@
       .industry-prev { left: -6px; }
       .industry-next { right: -6px; }
 
-      /* スマホ時: 業種別画像5枚に焼き付いた生成AI由来の擬似文字（タブレット画面・書類のチャート等）を抑えるため、画像に軽いblur+暗化、その上に全面ベール+右側グラデの二重ベールを重ねる */
+      /* スマホ時: 生成AI由来の擬似文字が出やすい画面・書類部分を背景化する */
+      .case-key-visual {
+        isolation: isolate;
+        background: #06243a;
+      }
       .case-key-visual img {
-        filter: blur(0.6px) brightness(0.88);
+        filter: blur(0.9px) brightness(0.78) contrast(0.88) saturate(0.92);
+        transform: scale(1.035);
+        transform-origin: center;
+      }
+      .case-key-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse at 38% 58%,
+            rgba(0, 40, 80, .36) 0%,
+            rgba(0, 40, 80, .30) 38%,
+            rgba(0, 40, 80, .12) 62%,
+            transparent 78%),
+          linear-gradient(to bottom,
+            rgba(0, 40, 80, .18),
+            rgba(0, 40, 80, .26));
+        -webkit-backdrop-filter: blur(2.4px);
+        backdrop-filter: blur(2.4px);
+        -webkit-mask-image: linear-gradient(to right,
+          #000 0%,
+          #000 78%,
+          rgba(0, 0, 0, .55) 90%,
+          transparent 100%);
+        mask-image: linear-gradient(to right,
+          #000 0%,
+          #000 78%,
+          rgba(0, 0, 0, .55) 90%,
+          transparent 100%);
       }
       .case-key-visual::after {
+        z-index: 1;
         background:
-          linear-gradient(rgba(0, 40, 80, .22), rgba(0, 40, 80, .22)),
+          linear-gradient(rgba(0, 40, 80, .30), rgba(0, 40, 80, .30)),
           linear-gradient(to right,
-            rgba(0, 40, 80, .35) 0%,
-            rgba(0, 40, 80, .25) 30%,
-            rgba(0, 40, 80, .45) 65%,
-            rgba(0, 40, 80, .65) 100%);
+            rgba(0, 40, 80, .48) 0%,
+            rgba(0, 40, 80, .36) 34%,
+            rgba(0, 40, 80, .52) 66%,
+            rgba(0, 40, 80, .72) 100%);
+      }
+      .case-key-overlay,
+      .case-key-strip {
+        z-index: 2;
       }
 
       /* スマホ時: §advisor ベネフィットパネルを横スクロールカード化（縦スペース節約・スワイプUX向上） */
