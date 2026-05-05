@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI活用 相談前チェックシート</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 210mm;
+      min-height: 297mm;
+      background: #f4f1ec;
+      color: #173044;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    }
+
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 10mm;
+      border: 0.25mm solid #d8c8b5;
+      pointer-events: none;
+    }
+
+    .header {
+      position: absolute;
+      top: 22mm;
+      right: 22mm;
+      left: 22mm;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .title-block {
+      padding-top: 1mm;
+    }
+
+    h1 {
+      margin: 0;
+      color: #073763;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 7mm 0 0;
+      color: #5a6672;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .profile-box {
+      width: 49mm;
+      min-height: 39.5mm;
+      padding: 9.2mm 8mm 7.5mm;
+      border: 0.25mm solid #d9cfc0;
+      border-radius: 1.7mm;
+      color: #5c6872;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 17mm 1fr;
+      gap: 5mm;
+      align-items: end;
+      margin-bottom: 7mm;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .field-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-line {
+      height: 1px;
+      border-bottom: 0.25mm solid #b7c0c9;
+    }
+
+    .divider {
+      position: absolute;
+      top: 71mm;
+      right: 22mm;
+      left: 22mm;
+      height: 0;
+      border-top: 0.45mm solid #073763;
+    }
+
+    .section {
+      position: absolute;
+      right: 22mm;
+      left: 22mm;
+      border: 0.25mm solid #ddd8cf;
+      border-radius: 1.8mm;
+      background: #fff;
+    }
+
+    .work-section {
+      top: 78.5mm;
+      height: 47mm;
+      padding: 6mm 5.5mm;
+    }
+
+    h2 {
+      margin: 0;
+      color: #073763;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      margin: 3mm 0 2.5mm;
+      color: #68737f;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 4mm;
+      row-gap: 4.4mm;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      color: #203545;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .checkbox {
+      width: 4mm;
+      height: 4mm;
+      margin-right: 3mm;
+      border: 0.35mm solid #073763;
+      border-radius: 0.65mm;
+      flex: 0 0 auto;
+    }
+
+    .grid {
+      position: absolute;
+      top: 132mm;
+      right: 22mm;
+      left: 22mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6.4mm 5mm;
+    }
+
+    .memo-card {
+      position: relative;
+      height: 53.5mm;
+      padding: 5.5mm;
+      border: 0.25mm solid #ddd8cf;
+      border-radius: 1.8mm;
+      background: #fff;
+    }
+
+    .memo-card.compact {
+      height: 48mm;
+    }
+
+    .memo-lines {
+      position: absolute;
+      top: 21.2mm;
+      right: 5.5mm;
+      left: 5.5mm;
+      margin: 0;
+    }
+
+    .memo-card.tall-title .memo-lines {
+      top: 26.7mm;
+    }
+
+    .memo-line {
+      position: absolute;
+      right: 0;
+      left: 0;
+      height: 0;
+      border-top: 0.25mm solid #b9c4cf;
+    }
+
+    .memo-line:nth-child(1) {
+      top: 0;
+    }
+
+    .memo-line:nth-child(2) {
+      top: 10.9mm;
+    }
+
+    .memo-line:nth-child(3) {
+      top: 21.8mm;
+    }
+
+    .footer {
+      position: absolute;
+      top: 247mm;
+      right: 22mm;
+      left: 22mm;
+      padding-top: 6mm;
+      border-top: 0.25mm solid #d8c8b5;
+      color: #5d6874;
+      font-size: 11px;
+      line-height: 1.72;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .footer-company {
+      margin-top: 1mm;
+      color: #073763;
+      font-weight: 800;
+    }
+
+    .footer-detail {
+      color: #68737f;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="AI活用 相談前チェックシート">
+    <div class="frame"></div>
+
+    <header class="header">
+      <div class="title-block">
+        <h1>AI活用 相談前チェックシート</h1>
+        <p class="lead">全部書かなくてOK。相談前に頭の中を軽く整理するための1枚です。</p>
+      </div>
+
+      <div class="profile-box" aria-label="記入欄">
+        <div class="field-row">
+          <span>会社名</span>
+          <span class="field-line"></span>
+        </div>
+        <div class="field-row">
+          <span>お名前</span>
+          <span class="field-line"></span>
+        </div>
+        <div class="field-row">
+          <span>日付</span>
+          <span class="field-line"></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <section class="section work-section">
+      <h2>1. 今いちばん時間がかかっている業務</h2>
+      <p class="section-note">近いものにチェックしてください。複数選んで大丈夫です。</p>
+      <div class="checkbox-grid" aria-label="業務チェック項目">
+        <div class="checkbox-item"><span class="checkbox"></span><span>日報・報告書</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>請求・見積</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>勤怠・シフト</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>入金確認</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>メール・LINE対応</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>資料作成</span></div>
+        <div class="checkbox-item"><span class="checkbox"></span><span>その他</span></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="相談前メモ欄">
+      <div class="memo-card tall-title">
+        <h2>2. 紙・Excel・LINE・電話で困っ<br>ていること</h2>
+        <div class="memo-lines">
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+        </div>
+      </div>
+      <div class="memo-card">
+        <h2>3. 特定の人に集中している判断</h2>
+        <div class="memo-lines">
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+        </div>
+      </div>
+      <div class="memo-card compact">
+        <h2>4. AIでできたら助かること</h2>
+        <div class="memo-lines">
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+        </div>
+      </div>
+      <div class="memo-card compact">
+        <h2>5. 相談時に聞きたいこと</h2>
+        <div class="memo-lines">
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+          <div class="memo-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>具体的な個人情報や顧客名は書かなくてOKです。ざっくりした困りごとだけでも、初回相談で優先順位を一緒に整理できます。</p>
+      <p class="footer-company">株式会社KofC / Kato office for Change</p>
+      <p class="footer-detail">〒792-0017 愛媛県新居浜市若水町1-2-9 ベラカーサ2F</p>
+      <p class="footer-detail">営業時間: 平日 9:00-17:00 / 定休日: 土・日・祝</p>
+    </footer>
+  </main>
+</body>
+</html>

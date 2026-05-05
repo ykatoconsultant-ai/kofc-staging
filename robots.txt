@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# This is a staging environment. All crawlers must not index any content here.
+# 本番環境は https://kofc-ai.com/ です。
