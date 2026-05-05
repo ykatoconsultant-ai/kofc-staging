@@ -2740,6 +2740,48 @@
       .industry-prev { left: -6px; }
       .industry-next { right: -6px; }
 
+      /* スマホ時: 業種別画像5枚に焼き付いた生成AI由来の擬似文字（タブレット画面・書類のチャート等）を抑えるため、左側にも濃紺ベールを追加 */
+      .case-key-visual::after {
+        background: linear-gradient(to right,
+          rgba(0, 40, 80, .35) 0%,
+          rgba(0, 40, 80, .25) 30%,
+          rgba(0, 40, 80, .45) 65%,
+          rgba(0, 40, 80, .65) 100%);
+      }
+
+      /* スマホ時: §advisor ベネフィットパネルを横スクロールカード化（縦スペース節約・スワイプUX向上） */
+      .advisor-benefit {
+        padding: 22px 0 18px;
+        border-left: none;
+        border-top: 4px solid var(--amber);
+      }
+      .advisor-benefit-title {
+        padding: 0 18px;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+      .advisor-benefit-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        padding: 4px 18px 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .advisor-benefit-list::-webkit-scrollbar {
+        display: none;
+      }
+      .advisor-benefit-list li {
+        flex: 0 0 80%;
+        background: #f6f8fb;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px 14px;
+        scroll-snap-align: start;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
       .voice-card {
         width: 80vw;
         max-width: 320px;
